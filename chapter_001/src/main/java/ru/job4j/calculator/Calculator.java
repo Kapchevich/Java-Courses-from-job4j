@@ -1,14 +1,8 @@
-/**
- * Package for calculate task.
- * @class Calculator Класс для вычисления арифметических операций "+" "-" "/" "*"
- * @author Mikhail Litovchenko (kapchevich@gmail.com)
- * @version $Id$
- * @since 0.1
- */
 package ru.job4j.calculator;
 
 public class Calculator {
     /**
+     * Класс для вычисления арифметических операций "+" "-" "/" "*"
      * @param first первое число, с которым проводим арифметические операции.
      * @param second второе число, с которым проводим арифметические операции.
      */
