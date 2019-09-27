@@ -13,7 +13,6 @@ public class FindLoopTest {
         int expect = 0;
         assertThat(result, is(expect));
     }
-
     @Test
     public void whenArrayHas11Then3() {
         FindLoop find = new FindLoop();
@@ -22,7 +21,25 @@ public class FindLoopTest {
         int result = find.indexOf(input, value);
         int expect = -1;
         assertThat(result, is(expect));
-
-
+    }
+    @Test
+    public void whenFind3() {
+        int[] input = new int[] {5, 2, 10, 2, 4};
+        int value = 2;
+        int start = 2;
+        int finish = 4;
+        int result = FindLoop.indexOf(input, value, start, finish);
+        int expect = 3;
+        assertThat(result, is(expect));
+    }
+    @Test
+    public void whenFind0() {
+        int[] input = new int[] {5, 2, 10, 2, 4};
+        int value = 300;
+        int start = 2;
+        int finish = 4;
+        int result = FindLoop.indexOf(input, value, start, finish);
+        int expect = 3;
+        assertThat(result, is(expect));
     }
 }
