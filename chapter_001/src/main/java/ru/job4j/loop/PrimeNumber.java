@@ -16,7 +16,7 @@ public class PrimeNumber {
                 }
             }
 
-        }return count;
+        } return count;
 
     }
 }

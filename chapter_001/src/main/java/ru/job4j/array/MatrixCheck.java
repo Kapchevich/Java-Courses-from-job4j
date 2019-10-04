@@ -12,11 +12,14 @@ public class MatrixCheck {
                 for (int j = 0; j < board.length; j++) {
                     if (board[i][j] == 'X') {
                         a++;
-                    } if (a == board.length) {
+                    }
+                    if (a == board.length) {
                         result = true;
-                    } if (board[j][i] == 'X') {
+                    }
+                    if (board[j][i] == 'X') {
                         b++;
-                    } if (b == board.length) {
+                    }
+                    if (b == board.length) {
                         result = true;
                     }
                 }

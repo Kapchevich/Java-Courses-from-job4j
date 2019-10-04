@@ -38,10 +38,10 @@ public class Calculator {
 
 
     public static void main(String[] args) {
-        add(1,1);
-        div(4,2);
-        multiplay(6,3);
-        subtract(10,5);
+        add(1, 1);
+        div(4, 2);
+        multiplay(6, 3);
+        subtract(10, 5);
         /**
          * Вход в программу и передача параметров в методы.
          */
