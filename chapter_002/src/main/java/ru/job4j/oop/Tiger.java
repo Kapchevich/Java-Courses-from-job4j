@@ -1,8 +1,7 @@
 package ru.job4j.oop;
 
-public class Tiger extends Predator {
-    public Tiger() {
-        System.out.print("Tiger");
-
+public class Tiger extends Animal {
+    public Tiger(String name) {
+        super(name);
     }
 }
