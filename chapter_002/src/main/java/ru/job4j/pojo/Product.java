@@ -16,9 +16,8 @@ public class Product {
         for (int i = 0; i < products.length; i++) {
             Product product = products[i];
             if (products[i] == null) {
-                Product a = products[i];
                 products[i] = products[index+1];
-                products[index+1] = a;
+                products[index+1] = null;
             }
         } return products;
 
