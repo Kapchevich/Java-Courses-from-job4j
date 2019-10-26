@@ -30,14 +30,20 @@ public class StartUI {
                 String id = scanner.nextLine();
                 Item next = new Item(name);
                 next.setId(id);
-                System.out.println("Task has been changed");
-                System.out.println(tracker.replace(next.getId(), next));
+                if (tracker.replace(next.getId(), next)) {
+                    System.out.println("Task has been changed");
+                } else {
+                    System.out.println("Task not found");
+                }
 
             } else if (select == 3) {
                 System.out.print("Enter items id: ");
                 String id = scanner.nextLine();
-                tracker.delete(id);
-                System.out.println("Task has been deleted.");
+                if (tracker.delete(id)) {
+                    System.out.println("Task has been deleted.");
+                } else {
+                    System.out.println("Task not found");
+                }
 
 
             } else if (select == 4) {
@@ -45,8 +51,12 @@ public class StartUI {
                 System.out.print("Enter id: ");
                 String id = scanner.nextLine();
                 Item item = tracker.findById(id);
-                System.out.println("Search results");
-                System.out.println("Name: " + item.getName() + " id: " + item.getId());
+                if (item != null) {
+                    System.out.println("Search results");
+                    System.out.println("Name: " + item.getName() + " id: " + item.getId());
+                } else {
+                    System.out.println("Task not found");
+                }
             } else if (select == 5) {
                 System.out.println("=== Search by name ====");
                 System.out.print("Enter name: ");
