@@ -1,69 +1,83 @@
 package ru.job4j.tracker;
 import java.util.Arrays;
-import java.util.Scanner;
 
-public class StartUI {
-    public void init(Scanner scanner, Tracker tracker) {
+public class StartUI  {
+    public static void createItem(Input input, Tracker tracker) {
+        System.out.println("=== Create a new Item ====");
+        System.out.print("Enter name: ");
+        String name = input.askStr("");
+        Item item = new Item(name);
+        tracker.add(item);
+        System.out.println("Name: " + item.getName() + " id " + item.getId());
+    }
+    public static void replaceItem (Input input, Tracker tracker) {
+        System.out.println("=== Edit item ====");
+        System.out.println(" Enter name and id ");
+        String name = input.askStr("");
+        String id = input.askStr("");
+        Item next = new Item(name);
+        next.setId(id);
+        if (tracker.replace(next.getId(), next)) {
+            System.out.println("Task has been changed");
+        } else {
+            System.out.println("Task not found");
+        }
+    }
+    public static void findAllItem (Input input, Tracker tracker) {
+        System.out.println("=== All items ====");
+        System.out.println(tracker.findAll());
+    }
+    public static void deleteItem (Input input, Tracker tracker) {
+        System.out.print("Enter items id: ");
+        String id = input.askStr("");
+        if (tracker.delete(id)) {
+            System.out.println("Task has been deleted.");
+        } else {
+            System.out.println("Task not found");
+        }
+    }
+    public static void findItemById (Input input, Tracker tracker) {
+        System.out.println("=== Search by id ====");
+        System.out.print("Enter id: ");
+        String id = input.askStr("");
+        Item item = tracker.findById(id);
+        if (item != null) {
+            System.out.println("Search results");
+            System.out.println("Name: " + item.getName() + " id: " + item.getId());
+        } else {
+            System.out.println("Task not found");
+        }
+    }
+    public static void findItemByName (Input input, Tracker tracker) {
+        System.out.println("=== Search by name ====");
+        System.out.print("Enter name: ");
+        String name = input.askStr("");
+        for (Item item: tracker.findByName(name)) {
+            System.out.println("Name: " + item.getName() + " id: " + item.getId());
+        }
+    }
+    public void init(Input input, Tracker tracker) {
         boolean run = true;
         while (run) {
             this.showMenu();
             System.out.print("Select: ");
-            int select = Integer.valueOf(scanner.nextLine());
+            int select = Integer.valueOf(input.askStr(""));
 
             if (select == 0) {
-                System.out.println("=== Create a new Item ====");
-                System.out.print("Enter name: ");
-                String name = scanner.nextLine();
-                Item item = new Item(name);
-                tracker.add(item);
-                System.out.println("=== Task created ===");
-                System.out.println("New name: " + item.getName() + " id: " + item.getId());
+                StartUI.createItem(input, tracker);
             } else if (select == 1) {
-                System.out.println("=== All items ====");
-                System.out.println(tracker.findAll());
-
-                System.out.println(Arrays.toString(tracker.findAll()));
+                StartUI.findAllItem(input, tracker);
             } else if (select == 2) {
-                System.out.println("=== Edit item ====");
-                System.out.println(" Enter name and id ");
-                String name = scanner.nextLine();
-                String id = scanner.nextLine();
-                Item next = new Item(name);
-                next.setId(id);
-                if (tracker.replace(next.getId(), next)) {
-                    System.out.println("Task has been changed");
-                } else {
-                    System.out.println("Task not found");
-                }
+                StartUI.replaceItem(input, tracker);
 
             } else if (select == 3) {
-                System.out.print("Enter items id: ");
-                String id = scanner.nextLine();
-                if (tracker.delete(id)) {
-                    System.out.println("Task has been deleted.");
-                } else {
-                    System.out.println("Task not found");
-                }
+                StartUI.deleteItem(input, tracker);
 
 
             } else if (select == 4) {
-                System.out.println("=== Search by id ====");
-                System.out.print("Enter id: ");
-                String id = scanner.nextLine();
-                Item item = tracker.findById(id);
-                if (item != null) {
-                    System.out.println("Search results");
-                    System.out.println("Name: " + item.getName() + " id: " + item.getId());
-                } else {
-                    System.out.println("Task not found");
-                }
+                StartUI.findItemById(input, tracker);
             } else if (select == 5) {
-                System.out.println("=== Search by name ====");
-                System.out.print("Enter name: ");
-                String name = scanner.nextLine();
-                for (Item item: tracker.findByName(name)) {
-                    System.out.println("Name: " + item.getName() + " id: " + item.getId());
-                }
+                StartUI.findItemByName(input, tracker);
 
             } else if (select == 6) {
                 run = false;
@@ -82,11 +96,9 @@ public class StartUI {
         System.out.println("5. Find items by name");
         System.out.println("6. Exit Program");
     }
-
-
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Tracker tracker = new Tracker();
-        new StartUI().init(scanner, tracker);
+            Input input = new ConsoleInput();
+            Tracker tracker = new Tracker();
+            new StartUI().init(input, tracker);
     }
 }
