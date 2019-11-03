@@ -1,16 +1,16 @@
 package ru.job4j.stragery;
 
+import java.util.StringJoiner;
+
 public class Square implements Shape {
     @Override
     public String draw() {
-        StringBuilder pic = new StringBuilder();
-        pic.append("O O O O");
-        pic.append("\n");
-        pic.append("O     O");
-        pic.append("\n");
-        pic.append("O     O");
-        pic.append("\n");
-        pic.append("O O O O");
-        return pic.toString();
+        String expect = new StringJoiner(System.lineSeparator(), "", "")
+        .add("O O O O")
+        .add("O     O")
+        .add("O     O")
+        .add("O O O O")
+                .toString();
+        return expect;
     }
 }

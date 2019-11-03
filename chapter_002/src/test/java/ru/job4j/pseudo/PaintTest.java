@@ -13,8 +13,11 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class PaintTest {
+    // поле содержит дефолтный вывод в консоль.
     private final PrintStream stdout = System.out;
+    // буфер для результата.
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+
     @Before
     public void loadOutput() {
         System.out.println("execute before method");
@@ -33,15 +36,11 @@ public class PaintTest {
         assertThat(
                 this.out.toString(),
                 is(
-                        new StringBuilder()
-                                .append("O O O O")
-                                .append("\n")
-                                .append("O     O")
-                                .append("\n")
-                                .append("O     O")
-                                .append("\n")
-                                .append("O O O O")
-                                .append(System.lineSeparator())
+                        new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
+                                .add("O O O O")
+                                .add("O     O")
+                                .add("O     O")
+                                .add("O O O O")
                                 .toString()
                 )
         );
@@ -53,14 +52,10 @@ public class PaintTest {
         assertThat(
                 this.out.toString(),
                 is(
-                        new StringBuilder()
-
-                                .append(" O ")
-                                .append("\n")
-                                .append(" O O ")
-                                .append("\n")
-                                .append(" O   O ")
-                                .append(System.lineSeparator())
+                        new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
+                                .add("  O  ")
+                                .add(" O O ")
+                                .add("OOOOO")
                                 .toString()
                 )
         );

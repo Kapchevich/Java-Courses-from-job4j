@@ -1,15 +1,16 @@
 package ru.job4j.stragery;
 
+import java.util.StringJoiner;
+
 public class Triangle implements Shape {
 
     @Override
     public String draw() {
-        StringBuilder pic = new StringBuilder();
-        pic.append(" O ");
-        pic.append("\n");
-        pic.append(" O O ");
-        pic.append("\n");
-        pic.append(" O   O ");
-        return pic.toString();
+        String expect = new StringJoiner(System.lineSeparator(), "", "")
+                .add("  O  ")
+                .add(" O O ")
+                .add("OOOOO")
+                .toString();
+        return expect;
     }
 }
