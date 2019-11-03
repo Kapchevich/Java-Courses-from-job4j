@@ -21,8 +21,11 @@ public class PaintTest {
                 is(
                         new StringBuilder()
                                 .append("O O O O")
+                                .append("\n")
                                 .append("O     O")
+                                .append("\n")
                                 .append("O     O")
+                                .append("\n")
                                 .append("O O O O")
                                 .append(System.lineSeparator())
                                 .toString()
@@ -41,7 +44,9 @@ public class PaintTest {
                 is(
                         new StringBuilder()
                                 .append("  O ")
+                                .append("\n")
                                 .append(" O O ")
+                                .append("\n")
                                 .append("O   O ")
                                 .append(System.lineSeparator())
                                 .toString()

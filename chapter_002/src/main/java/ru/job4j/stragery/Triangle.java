@@ -6,7 +6,9 @@ public class Triangle implements Shape {
     public String draw() {
         StringBuilder pic = new StringBuilder();
         pic.append("  O ");
+        pic.append("\n");
         pic.append(" O O ");
+        pic.append("\n");
         pic.append("O   O ");
         return pic.toString();
     }
