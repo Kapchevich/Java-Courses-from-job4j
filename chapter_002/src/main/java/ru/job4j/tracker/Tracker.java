@@ -1,16 +1,18 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Tracker {
-    private final Item[] items = new Item[100];
+    private final List<Item> items = new ArrayList<>(100);
 
     private int position = 0;
 
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[this.position++] = item;
+        items.add(this.position++, item);
         return item;
     }
 
@@ -23,8 +25,7 @@ public class Tracker {
         boolean result = false;
         for (int i = 0; i < this.position; i++) {
             if (item != null && item.getId().equals(id)) {
-                items[i] = item;
-                item.setId(id);
+                items.set(i, item);
                 result = true;
                 break;
             }
@@ -34,7 +35,7 @@ public class Tracker {
     public Item findById(String id) {
        Item result = null;
        for (int i = 0; i < this.position; i++) {
-           Item find = items[i];
+           Item find = items.get(i);
            if (find != null && find.getId().equals(id)) {
                result = find;
            }
@@ -44,8 +45,8 @@ public class Tracker {
     public boolean delete(String id) {
         boolean result = false;
         for (int i = 0; i < this.position; i++) {
-            if (items[i] != null && items[i].getId().equals(id)) {
-                System.arraycopy(items, i, this.items, i + 1, items.length - 1);
+            if (items.get(i) != null && items.get(i).getId().contains(id)) {
+                items.remove(i);
                 result = true;
                 this.position--;
                 break;
@@ -53,17 +54,19 @@ public class Tracker {
         } return result;
     }
 
-    public Item[] findByName(String key) {
+    public List<Item> findByName(String key) {
         int count = 0;
+        List<Item> find = new ArrayList<>();
         for (int i = 0; i < this.position; i++) {
-            if (items[i] != null && items[i].getName().equals(key)) {
-                count++;
+            if (items.get(i) != null && items.get(i).getName().equals(key)) {
+                find.add(items.get(i));
             }
-        } return Arrays.copyOf(items, count);
+        }
+        return find;
     }
 
-    public Item[] findAll() {
-        return Arrays.copyOf(items, position);
+    public List<Item> findAll() {
+        return this.items;
 
     }
 }
