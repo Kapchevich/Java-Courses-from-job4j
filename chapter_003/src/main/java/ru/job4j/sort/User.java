@@ -9,13 +9,12 @@ public class User implements Comparable<User> {
         this.age = age;
     }
     public int compareTo(User nextUser) {
-        if (this.age == nextUser.age) {
-            return 0;
-        }else if (this.age < nextUser.age) {
-            return -1;
-        }else {
-            return 1;
+        //if (this.age == nextUser.age) {
+          //  return 0;
+        //}else if (this.age < nextUser.age) {
+          //  return -1;
+        //}else {
+            return this.name.compareTo(nextUser.name);
         }
-    }
     }
 

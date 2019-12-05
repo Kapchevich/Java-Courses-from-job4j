@@ -10,15 +10,17 @@ public class SortUserTest {
     @Test
     public void sort() {
         SortUser a = new SortUser();
-        User second = new User("Vasya", 20);
-        User first = new User("Anton", 25);
+        User first = new User("Vasya", 50);
+        User second = new User("Anton", 25);
         User third = new User("Mikhail", 30);
-        List<User> list = Arrays.asList(first, second, third);
+        User four = new User("Kirill", 18);
+        List<User> list = Arrays.asList(first, second, third, four);
         Set<User> result = a.sort(list);
         Set<User> expect = new TreeSet<>();
-        expect.add(first);
+        expect.add(four);
         expect.add(second);
         expect.add(third);
+        expect.add(first);
         assertThat(result, is(expect));
 
     }
