@@ -6,7 +6,7 @@ public class FitTest {
     @Test
     public void manWeight() {
         double in = 179.6;
-        double expected = 91.42;
+        double expected = 91.53999999999999;
         double out = Fit.manWeight(in);
         Assert.assertEquals(expected, out, 0.01);
     }

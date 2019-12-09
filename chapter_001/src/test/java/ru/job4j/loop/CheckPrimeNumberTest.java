@@ -9,7 +9,7 @@ public class CheckPrimeNumberTest {
     public void when5() {
         CheckPrimeNumber prime = new CheckPrimeNumber();
         boolean rsl = prime.check(15);
-        assertThat(rsl, is(true));
+        assertThat(rsl, is(false));
     }
 
     @Test
