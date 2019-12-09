@@ -1,5 +1,2 @@
-# job4j;
-# job4j;
-Второй
-В курсе производилась работа с веткамы git.
-Коммит для task_124176
+[![Build Status](https://travis-ci.org/Kapchevich/job4j.svg?branch=master)](https://travis-ci.org/Kapchevich/job4j)
+[![codecov](https://codecov.io/gh/Kapchevich/job4j/branch/master/graph/badge.svg)](https://codecov.io/gh/Kapchevich/job4j)
