@@ -1,5 +1,8 @@
 package ru.job4j.bank;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Account {
     private double value;
     private String requisites;
@@ -24,5 +27,11 @@ public class Account {
 
     public String getRequisites() {
         return requisites;
+    }
+
+    boolean transfer(Account srcBank, Account dstBank, double amount) {
+        srcBank.value -= amount;
+        dstBank.value += amount;
+        return true;
     }
 }
