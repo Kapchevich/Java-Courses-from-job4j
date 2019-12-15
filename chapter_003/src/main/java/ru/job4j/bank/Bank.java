@@ -17,16 +17,11 @@ public class Bank {
     }
 
     public void addAccountToUser(String passport, Account account) {
-        List<Account> list = new ArrayList<>();
-        for (Map.Entry<User, List<Account>> entry : database.entrySet()) {
-            list = entry.getValue();
-            if (entry.getKey().getPasport().equals(passport)
-            && list.size() == 0) {
-                list.add(account);
-                database.put(entry.getKey(), list);
-            } else if (entry.getKey().getPasport().equals(passport)) {
-                list.add(list.size(), account);
-                database.put(entry.getKey(), list);
+        for (User key : database.keySet()) {
+            if (key.getPasport().equals(passport)
+            && database.get(key).indexOf(account) == -1) {
+                database.get(key).add(account);
+                break;
             }
         }
     }
@@ -36,7 +31,7 @@ public class Bank {
             if (entry.getKey().getPasport().equals(passport)) {
                 for (int index = 0; index < entry.getValue().size(); index++) {
                     if (entry.getValue().get(index).equals(account)) {
-                            database.get(entry.getKey()).remove(account);
+                            database.get(entry.getKey()).remove(index);
                     }
                 }
             }
@@ -54,12 +49,10 @@ public class Bank {
     }
 
     public Account getUserAccounts(String passport, String requisite) {
-        List<Account> list = new ArrayList<>();
         for (Map.Entry<User, List<Account>> entry : database.entrySet()) {
-            list = entry.getValue();
-            for (int index = 0; index < list.size(); index++) {
+            for (int index = 0; index < entry.getValue().size(); index++) {
             if (entry.getKey().getPasport().equals(passport)
-            && list.get(index).getRequisites().equals(requisite)) {
+            && entry.getValue().get(index).getRequisites().equals(requisite)) {
                 return entry.getValue().get(index);
             }
             }
@@ -70,7 +63,8 @@ public class Bank {
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
         Account srsAccount = getUserAccounts(srcPassport, srcRequisite);
         Account dstAccount = getUserAccounts(destPassport, dstRequisite);
-        if (srsAccount.getRequisites() != srcRequisite
+        if (srsAccount == null || dstAccount == null
+                || srsAccount.getRequisites() != srcRequisite
                 || srsAccount.getValue() < amount
                 || dstAccount.getRequisites() != dstRequisite) {
             return false;
@@ -78,3 +72,4 @@ public class Bank {
         return srsAccount.transfer(srsAccount, dstAccount, amount);
     }
 }
+

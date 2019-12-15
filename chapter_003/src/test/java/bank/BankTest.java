@@ -35,5 +35,32 @@ public class BankTest {
                 boolean a = bank.transferMoney("12QQ", "4513FF", "12RR", "3218RR", 50000);
                 assertThat(a, is(false));
         }
+        @Test
+        public void transferNull () {
+                Bank bank = new Bank();
+                User srsUser = new User("Misha", "12QQ");
+                User dstUser = new User ("Anton", "12RR");
+                Account srsAccount = new Account(14000, "4513FF");
+                Account dstAccount = new Account(6000, "3218RR");
+                bank.addUser(srsUser);
+                bank.addUser(dstUser);
+                bank.addAccountToUser("12QQ", srsAccount);
+                bank.addAccountToUser("12RR", dstAccount);
+                boolean a = bank.transferMoney("12QQ", "4513FFf", "12RR", "3218RR", 50000);
+                assertThat(a, is(false));
+        }
+        @Test
+        public void getAccountsWith2Param () {
+                Bank bank = new Bank ( );
+                User srsUser = new User ( "Misha", "12QQ" );
+                User dstUser = new User ( "Anton", "12RR" );
+                Account srsAccount = new Account ( 14000, "4513FF" );
+                Account dstAccount = new Account ( 6000, "3218RR" );
+                bank.addUser ( srsUser );
+                bank.addUser ( dstUser );
+                bank.addAccountToUser ( "12QQ", srsAccount );
+                bank.addAccountToUser ( "12RR", dstAccount );
+                assertThat ( bank.getUserAccounts("12QQ", "4513FF"), is (srsAccount) );
+        }
 }
 
