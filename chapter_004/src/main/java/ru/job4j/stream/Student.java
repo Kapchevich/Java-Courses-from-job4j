@@ -1,28 +1,41 @@
 package ru.job4j.stream;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class Student {
-    private String surname;
+public class Student implements Comparable<Student> {
+   private String name;
+   private int scope;
 
-    public Student(String surname) {
-        this.surname = surname;
+    public Student() {
+
     }
 
-    public String getSurname() {
-        return surname;
+   public Student(String name, int scope) {
+       this.name = name;
+       this.scope = scope;
+   }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getScope() {
+        return scope;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass ( ) != o.getClass ( )) return false;
-        Student student = (Student) o;
-        return Objects.equals ( surname, student.surname );
+    public int compareTo(Student o) {
+        return o.getScope() - this.scope;
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(surname);
+    public List<Student> levelOf(List<Student> students, int bound) {
+       List<Student> list = students.stream()
+               .flatMap(Stream::ofNullable)
+               .sorted()
+               .takeWhile(i -> i.getScope() > bound)
+               .collect(Collectors.toList());
+       return list;
     }
 }
