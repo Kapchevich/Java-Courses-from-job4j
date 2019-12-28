@@ -1,7 +1,6 @@
 package ru.job4j.stream;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -9,6 +8,9 @@ public class Student implements Comparable<Student> {
    private String name;
    private int scope;
 
+    public Student() {
+
+    }
 
    public Student(String name, int scope) {
        this.name = name;
