@@ -12,6 +12,9 @@
         <module>chapter_001</module>
         <module>chapter_002</module>
         <module>Habr</module>
+        <module>chapter_005</module>
+        <module>chapter_003</module>
+        <module>chapter_004</module>
     </modules>
 
     <properties>
